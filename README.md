@@ -7,15 +7,15 @@ Birthday Message (BM) is a web system for sending birthday messages.
 PHP >= 8.1 
 https://laravel.com/docs/10.x/releases#support-policy
 
-## Installation with Docker:
+## Installation:
 
 ### Use Make File
-1. Clone the repository using `git clone git@gitlab.com:anasark/mx100.git` command.
+1. Clone the repository using `git clone git@github.com:anasark/birthday-message.git` command.
 2. Start a Docker development environment using `make start` command.
 3. Install dependencies and database structure using `make install` command.
 4. (Optional) Run tests to confirm installation using `make test` command. **NOTE:** Tests may fail during first run, so repeat the command several times.
 
-### Use Docker Command
+### Manually
 1. Clone the repository using `git clone git@gitlab.com:anasark/mx100.git` command.
 2. Start a Docker development environment using `docker compose up -d` command.
 3. Copy env file using `cp .env.example .env` command.
@@ -25,18 +25,24 @@ https://laravel.com/docs/10.x/releases#support-policy
 composer install
 php artisan key:generate
 php artisan migrate:fresh
-php artisan storage:link
-php artisan jwt:secret
 ```
-6. (Optional) Run tests to confirm installation using `php artisan test` command inside Container shell. **NOTE:** Tests may fail during first run, so repeat the command several times. And run this command to prepare database for testing 
+6. Seed geo data using `php artisan geo:seed AU --append && php artisan geo:seed ID --append --chunk=3000` command.
+   Or you can manualy insert into database, you can download the sql here https://anasabdur.com/data/geo.sql.
+7. (Optional) Run tests to confirm installation using `php artisan test` command inside Container shell. **NOTE:** Tests may fail during first run, so repeat the command several times. And run this command to prepare database for testing 
 ```
 mkdir ./database/testing
 touch ./database/testing/database.sqlite
 ```
 
-## Additional Docker Configuration for Apple Processor
+## Usage
+### Seed user data
+You can seed user data using `php artisan db:seed` command.
 
-- Must use MariaDB image instead of MySQL image.
+### Schedule
+This system uses a `schedule` so that it can be sent according to the date of birth. To run schedule using `php artisan schedule:work` command. You can see a more complete document here https://laravel.com/docs/10.x/scheduling.
+
+### Queue
+To run `queue` using `php artisan queue:work` command. You can see a more complete document here https://laravel.com/docs/10.x/queues.
 
 ## API Documentation
 - http://localhost/api/documentation
