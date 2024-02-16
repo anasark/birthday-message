@@ -12,10 +12,10 @@ class ReminderHistory extends Model
     protected $guarded = [];
 
     /** @var integer */
-    public const STATUS_SUCCESS = 1;
+    public const STATUS_SUCCESS = '1';
 
     /** @var integer */
-    public const STATUS_FAILED = 0;
+    public const STATUS_FAILED = '0';
 
     /** @var integer[] */
     public const STATUS = [
