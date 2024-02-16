@@ -1,4 +1,4 @@
-# MX100
+# Birthday Message
 
 Birthday Message (BM) is a web system for sending birthday messages.
 
@@ -11,24 +11,26 @@ https://laravel.com/docs/10.x/releases#support-policy
 
 ### Use Make File
 1. Clone the repository using `git clone git@github.com:anasark/birthday-message.git` command.
-2. Start a Docker development environment using `make start` command.
-3. Install dependencies and database structure using `make install` command.
-4. (Optional) Run tests to confirm installation using `make test` command. **NOTE:** Tests may fail during first run, so repeat the command several times.
+2. Go to project folder `cd birthday-message`.
+3. Start a Docker development environment using `make start` command.
+4. Install dependencies and database structure using `make install` command.
+5. (Optional) Run tests to confirm installation using `make test` command. **NOTE:** Tests may fail during first run, so repeat the command several times.
 
 ### Manually
-1. Clone the repository using `git clone git@gitlab.com:anasark/mx100.git` command.
-2. Start a Docker development environment using `docker compose up -d` command.
-3. Copy env file using `cp .env.example .env` command.
-4. Go into Container shell using `docker compose exec -ti php bash` command.
-5. Install dependencies and database structure using command:
+1. Clone the repository using `git clone git@github.com:anasark/birthday-message.git` command.
+2. Go to project folder `cd birthday-message`
+3. Start a Docker development environment using `docker compose up -d` command.
+4. Copy env file using `cp .env.example .env` command.
+5. Go into Container shell using `docker compose exec -ti php bash` command.
+6. Install dependencies and database structure using command:
 ```
 composer install
 php artisan key:generate
 php artisan migrate:fresh
 ```
-6. Seed geo data using `php artisan geo:seed AU --append && php artisan geo:seed ID --append --chunk=3000` command.
+7. Seed geo data using `php artisan geo:seed AU --append && php artisan geo:seed ID --append --chunk=3000` command.
    Or you can manualy insert into database, you can download the sql here https://anasabdur.com/data/geo.sql.
-7. (Optional) Run tests to confirm installation using `php artisan test` command inside Container shell. **NOTE:** Tests may fail during first run, so repeat the command several times. And run this command to prepare database for testing 
+8. (Optional) Run tests to confirm installation using `php artisan test` command inside Container shell. **NOTE:** Tests may fail during first run, so repeat the command several times. And run this command to prepare database for testing 
 ```
 mkdir ./database/testing
 touch ./database/testing/database.sqlite
